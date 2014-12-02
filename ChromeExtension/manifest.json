@@ -1,0 +1,22 @@
+{
+  "name": "ServiceNow Notifier",
+  "description": "Get Notified about ServiceNow tickets assigned to you.",
+  "version": "0.0.1",
+  "author": "Dan Franko",
+  "manifest_version": 2,
+  "minimum_chrome_version": "27",
+  "app": {
+    "background": {
+      "scripts": ["js/main.js"]
+    }
+  },
+  "icons": {
+    "128": "images/servicenow-icon.png", 
+    "16": "images/servicenow-icon.png"
+  },
+  "permissions": [
+    "notifications",
+    "storage"
+  ],
+  "optional_permissions": [ "http://*/" ]
+}
