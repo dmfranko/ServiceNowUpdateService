@@ -1,13 +1,13 @@
 // What SN instance to hit.  We get this from the notification service.
-var snendpoint = "";
+// var snendpoint = "";
 
 function showNotification() {
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "http://" + URI(document.querySelector('#endpoint').value).host() + "/newTickets/" + document.querySelector('#userid').value, true);
+	xhr.open("GET", "https://" + URI(document.querySelector('#endpoint').value).host() + "/newTickets.do?username=" + document.querySelector('#userid').value, true);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4) {
 			obj = JSON.parse(xhr.responseText);
-			obj.forEach(function(entry) {
+			obj.incident.forEach(function(entry) {
 				var options = {
 					iconUrl : "/images/servicenow-icon.png",
 					title : "ServiceNow",
@@ -39,38 +39,30 @@ function showNotification() {
 };
 
 onload = function() {
-	document.querySelector('#permissions').addEventListener('click', function(event) {
-        chrome.permissions.request({
-          origins: [URI(document.querySelector('#endpoint').value).href()]
-        }, function(granted) {
-          // The callback argument will be true if the user granted the permissions.
-          if (granted) {
-            document.querySelector('#start').disabled = false;
-          } else {
-            document.querySelector('#start').disabled = true;
-          }
-        });
-      });
-
-	
 	// Allow the user to start showing the notifications
 	document.querySelector('#start').onclick = function() {
 		showNotification();
+		
 		timer = setInterval(function() {showNotification();}, 5000);
 
 		document.querySelector('#stop').disabled = false;
 		document.querySelector('#start').disabled = true;
 		document.querySelector('#userid').disabled = true;
 		document.querySelector('#endpoint').disabled = true;
-
-		var xhr = new XMLHttpRequest();
-		xhr.open("GET", "http://" + URI(document.querySelector('#endpoint').value).host() + "/snurl", true);
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4) {
-				snendpoint = JSON.parse(xhr.responseText);;
+		
+		if (URI(document.querySelector('#endpoint').value).domain().search("service-now.com") > -1){
+			snendpoint = URI(document.querySelector('#endpoint').value).host();
+		}
+		else{
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "http://" + URI(document.querySelector('#endpoint').value).host() + "/snurl", true);
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4) {
+					snendpoint = JSON.parse(xhr.responseText);;
+				};
 			};
-		};
-		xhr.send();
+			xhr.send();
+		}
 	};
 
 	// Allow the user to stop showing the notifications

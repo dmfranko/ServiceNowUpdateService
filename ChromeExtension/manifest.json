@@ -16,7 +16,9 @@
   },
   "permissions": [
     "notifications",
-    "storage"
-  ],
-  "optional_permissions": [ "http://*/" ]
+    "storage",
+    "https://service-now.com",
+    "http://*/",
+    "https://*/"
+  ]
 }

@@ -7,12 +7,13 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<script src="js/background.js"></script>
 		<script src="js/URI.min.js"></script>
+		<script src="js/jquery-2.1.1.min.js"></script>
 	</head>
 	<body>
 		<div class="container">
 			<h1> ServiceNow <small>Notifications</small></h1>
 
-			<button type="button" class="btn btn-success btn-sm" id="start" disabled>
+			<button type="button" class="btn btn-success btn-sm" id="start">
 				Show notifications
 			</button>
 			<button type="button" class="btn btn-danger btn-sm" id="stop" disabled>
@@ -28,10 +29,6 @@
 				<label for "endpoint">Notification Service Endpoint</label>
 				<input type="url" id="endpoint" class="form-control" placeholder="yourendpoint.com">
 			</div>
-			<button type="button" class="btn btn-danger btn-sm" id="permissions">
-				Grant permissions
-			</button>
-			<br />
 			<br />
 			<div class="alert alert-info">
 				Want to know more?  Click <a href="https://github.com/dmfranko/ServiceNowUpdateService" target="_blank">here</a>.

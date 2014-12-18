@@ -26,7 +26,7 @@ function runApp() {
   chrome.app.window.create('window.html', {
     bounds: {
       'width': 300,
-      'height': 450
+      'height': 400
     },
     "resizable": false
   });
