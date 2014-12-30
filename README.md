@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/dmfranko/ServiceNowUpdateService/badges/gpa.svg)](https://codeclimate.com/github/dmfranko/ServiceNowUpdateService)
+
 ServiceNowUpdateService
 =======================
 
